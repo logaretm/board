@@ -38,7 +38,7 @@ const routes = requireComponent.keys().map(path => {
   console.log('loading: ', `./pages/${pathName}.vue`, `/${pathName.replace('index', '')}`)
 
   return {
-    path: isIndex ? `/${pathName.replace('index', '')}` : `/${pathName}`,
+    path: (isIndex ? `/${pathName.replace('index', '')}` : `/${pathName}`).replace(/\/$/, ''),
     component: loadPageAsync(pathName)
   }
 })

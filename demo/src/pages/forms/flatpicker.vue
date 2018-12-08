@@ -111,7 +111,7 @@ export default {
       basic: {},
       wrap: {
         wrap: true,
-        altFormat: 'M	j, Y',
+        altFormat: 'M j, Y',
         altInput: true,
         dateFormat: 'Y-m-d',
         minDate: new Date()
