@@ -4,6 +4,17 @@
       <Transition name="fade" mode="out-in">
         <RouterView />
       </Transition>
+      <notifications group="global" position="bottom right">
+        <div slot="body" slot-scope="props" :class="['alert', props.item.type]">
+          <div class="alert-content">
+            <div class="alert-title" v-if="props.item.title">{{ props.item.title }}</div>
+            <div v-html='props.item.text' v-if="props.item.text"></div>
+          </div>
+          <button class="alert-dismiss" @click="props.close">
+            <AppIcon name="close" />
+          </button>
+        </div>
+      </notifications>
     </DefaultLayout>
   </div>
 </template>

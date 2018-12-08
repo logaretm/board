@@ -7,14 +7,14 @@
 
 <style lang="stylus" >
 .FullPage
-  background: url('/assets/img/bg/1.jpg') no-repeat center center / cover
+  background: url('../assets/img/bg/1.jpg') no-repeat center center / cover
   min-height: 100vh
   display: flex
   justify-content: center
   align-items: center
 
   &.is-2
-    background: url('/assets/img/bg/2.png') no-repeat center center / cover
+    background: url('../assets/img/bg/2.png') no-repeat center center / cover
 
   &.is-half
     .FullPage-card
@@ -38,7 +38,7 @@
 
         &:first-child
           color: $white
-          background: url('/assets/img/bg/3.jpg') no-repeat center center / cover
+          background: url('../assets/img/bg/3.jpg') no-repeat center center / cover
           display: flex
           flex-direction: column
           justify-content: center

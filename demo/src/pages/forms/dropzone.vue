@@ -24,6 +24,8 @@ div
 <script>
 import Dropzone from 'vue2-dropzone'
 import 'vue2-dropzone/dist/vue2Dropzone.min.css'
+// Import our custom css
+import '~board/styles/libs/vue-dropzone.styl'
 
 export default {
   head () {

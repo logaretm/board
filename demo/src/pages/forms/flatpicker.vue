@@ -89,8 +89,10 @@ div
 </template>
 
 <script>
-import FlatPickr from 'vue-flatpickr-component'
+import FlatPicker from 'vue-flatpickr-component'
 import 'flatpickr/dist/flatpickr.css'
+// Import our custom css
+import '~board/styles/libs/vue-flatpicker.styl'
 
 export default {
   head () {
@@ -99,7 +101,7 @@ export default {
     }
   },
   components: {
-    FlatPickr
+    FlatPicker
   },
   data: () => ({
     form: {

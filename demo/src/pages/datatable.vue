@@ -44,6 +44,8 @@ div
 <script>
 import { VueGoodTable } from 'vue-good-table'
 import 'vue-good-table/dist/vue-good-table.css'
+// Import our custom css
+import '~board/styles/libs/vue-goodtable.styl'
 
 export default {
   head () {

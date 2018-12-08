@@ -117,6 +117,8 @@ div
 <script>
 import Multiselect from 'vue-multiselect'
 import 'vue-multiselect/dist/vue-multiselect.min.css'
+// Import our custom css
+import '~board/styles/libs/vue-multiselect.styl'
 
 export default {
   head () {

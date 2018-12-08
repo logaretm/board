@@ -37,6 +37,9 @@ div
 </template>
 
 <script>
+// Import our custom css
+import '~board/styles/libs/vue-notification.styl'
+
 export default {
   head () {
     return {
@@ -44,12 +47,13 @@ export default {
     }
   },
   methods: {
-    notify: function (title, text, type) {
+    notify (title, text, type) {
       this.$notify({
         group: 'global',
         title: title,
         text: text,
-        type: type
+        type: type,
+        duration: -1
       })
     }
   }
