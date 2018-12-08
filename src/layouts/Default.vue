@@ -5,7 +5,7 @@
   .TheBody
     slot
 
-    notifications(group='global' position="bottom right")
+    Notifications(group='global' position="bottom right")
       template(slot='body', slot-scope='props')
         .alert(:class="props.item.type")
           .alert-content

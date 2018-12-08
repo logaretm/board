@@ -109,7 +109,7 @@ div
 export default {
   head () {
     return {
-      title: 'Buttons'
+      title: 'Text Input'
     }
   }
 }

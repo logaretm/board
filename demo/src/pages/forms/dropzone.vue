@@ -22,11 +22,17 @@ div
 </template>
 
 <script>
+import Dropzone from 'vue2-dropzone'
+import 'vue2-dropzone/dist/vue2Dropzone.min.css'
+
 export default {
   head () {
     return {
       title: 'Vue Dropzone'
     }
+  },
+  components: {
+    Dropzone
   },
   data: () => ({
     singleOptions: {

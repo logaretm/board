@@ -7,108 +7,130 @@ div
       AppCard.is-full
         template(slot="header")
           h4.AppCard-title Basic
-        form.form
-          .field
-            label.field-label Name
-            input.input(v-validate="'required'" name="Name" type="text"  placeholder='Enter your name' :class="{'is-danger': errors.has('Name')}")
-            span.field-text.is-danger(v-if="errors.has('Name')") {{ errors.first('Name') }}
-          .field
-            label.field-label Email
-            input.input(v-validate="'required|email'" name="Email" type="text"  placeholder='Enter your email' :class="{'is-danger': errors.has('Email')}")
-            span.field-text.is-danger(v-if="errors.has('Email')") {{ errors.first('Email') }}
-          .field
-            label.field-label Url
-            input.input(v-validate="'required|url:require_protocol'" name="Url" type="text"  placeholder='Enter your Url' :class="{'is-danger': errors.has('Url')}")
-            span.field-text.is-danger(v-if="errors.has('Url')") {{ errors.first('Url') }}
-          .field
-            label.field-label Digits
-            input.input(v-validate="'required|numeric'" name="Digits" type="text"  placeholder='Enter your digits' :class="{'is-danger': errors.has('Digits')}")
-            span.field-text.is-danger(v-if="errors.has('Digits')") {{ errors.first('Digits') }}
-          .field
-            label.field-label Credit card
-            input.input(v-validate="'required|credit_card'" name="CreditCard" type="text"  placeholder='Enter your credit card' :class="{'is-danger': errors.has('CreditCard')}")
-            span.field-text.is-danger(v-if="errors.has('CreditCard')") {{ errors.first('CreditCard') }}
+        form.form(novalidate)
+          ValidationProvider(name="Name" rules="required")
+            .field(slot-scope="{ errors }")
+              label.field-label Name
+              input.input(v-model="form1.name" type="text" placeholder='Enter your name' :class="{ 'is-danger': errors[0] }")
+              span.field-text.is-danger(v-if="errors[0]") {{ errors[0] }}
+          ValidationProvider(name="Email" rules="required|email")
+            .field(slot-scope="{ errors }")
+              label.field-label Email
+              input.input(v-model="form1.email" type="email" placeholder='Enter your email' :class="{ 'is-danger': errors[0] }")
+              span.field-text.is-danger(v-if="errors[0]") {{ errors[0] }}
+          ValidationProvider(name="URL" rules="required|url:require_protocol")
+            .field(slot-scope="{ errors }")
+              label.field-label URL
+              input.input(v-model="form1.url" type="url" placeholder='Enter your URL' :class="{'is-danger': errors[0] }")
+              span.field-text.is-danger(v-if="errors[0]") {{ errors[0] }}
+          ValidationProvider(name="Digits" rules="required|numeric")
+            .field(slot-scope="{ errors }")
+              label.field-label Digits
+              input.input(v-model="form1.digits" type="text" placeholder='Enter your digits' :class="{'is-danger': errors[0] }")
+              span.field-text.is-danger(v-if="errors[0]") {{ errors[0] }}
+          ValidationProvider(name="Credit Card" rules="required|credit_card")
+            .field(slot-scope="{ errors }")
+              label.field-label Credit card
+              input.input(v-model="form1.card" type="text" placeholder='Enter your credit card' :class="{'is-danger': errors[0] }")
+              span.field-text.is-danger(v-if="errors[0]") {{ errors[0] }}
 
     .column.is-desktop-6
       AppCard.is-full
         template(slot="header")
-          h4.AppCard-title Scoped Form
-        form.form(@submit.prevent="validateForm('form-1')" data-vv-scope="form-1")
-          .field
-            label.field-label Name
-            input.input( v-validate="'required'" name="Name" type="text" placeholder="Enter your name" :class="{'is-danger': errors.has('form-1.Name')}")
-            span.field-text.is-danger(v-if="errors.has('form-1.Name')") {{ errors.first('form-1.Name') }}
+          h4.AppCard-title Observed Form
+        ValidationObserver
+          form.form(slot-scope="{ validate }" @submit.prevent="validate()")
+            ValidationProvider(name="Name" rules="required")
+              .field(slot-scope="{ errors }")
+                label.field-label Name
+                input.input(v-model="form2.name" type="text" placeholder='Enter your name' :class="{ 'is-danger': errors[0] }")
+                span.field-text.is-danger(v-if="errors[0]") {{ errors[0] }}
+            ValidationProvider(name="Email" rules="required|email")
+              .field(slot-scope="{ errors }")
+                label.field-label Email
+                input.input(v-model="form2.email" type="email" placeholder='Enter your email' :class="{ 'is-danger': errors[0] }")
+                span.field-text.is-danger(v-if="errors[0]") {{ errors[0] }}
+            ValidationProvider(name="URL" rules="required|url:require_protocol")
+              .field(slot-scope="{ errors }")
+                label.field-label URL
+                input.input(v-model="form2.url" type="url" placeholder='Enter your URL' :class="{'is-danger': errors[0] }")
+                span.field-text.is-danger(v-if="errors[0]") {{ errors[0] }}
+            ValidationProvider(name="Digits" rules="required|numeric")
+              .field(slot-scope="{ errors }")
+                label.field-label Digits
+                input.input(v-model="form2.digits" type="text" placeholder='Enter your digits' :class="{'is-danger': errors[0] }")
+                span.field-text.is-danger(v-if="errors[0]") {{ errors[0] }}
+            ValidationProvider(name="Credit Card" rules="required|credit_card")
+              .field(slot-scope="{ errors }")
+                label.field-label Credit card
+                input.input(v-model="form2.card" type="text" placeholder='Enter your credit card' :class="{'is-danger': errors[0] }")
+                span.field-text.is-danger(v-if="errors[0]") {{ errors[0] }}
 
-          .field
-            label.field-label Email
-            input.input( v-validate="'required|email'" name="Email" type="text" placeholder="Enter your email" :class="{'is-danger': errors.has('form-1.Email')}")
-            span.field-text.is-danger(v-if="errors.has('form-1.Email')") {{ errors.first('form-1.Email') }}
-
-          .field
-            label.field-label URL
-            input.input( v-validate="'required|url:require_protocol'" name="Url" type="text" placeholder="Enter your URL" :class="{'is-danger': errors.has('form-1.Url')}")
-            span.field-text.is-danger(v-if="errors.has('form-1.Url')") {{ errors.first('form-1.Url') }}
-
-          .field
-            label.field-label Digits
-            input.input( v-validate="'required|numeric'" name="Digits" type="text" placeholder="Enter your Digits" :class="{'is-danger': errors.has('form-1.Digits')}")
-            span.field-text.is-danger(v-if="errors.has('form-1.Digits')") {{ errors.first('form-1.Digits') }}
-
-          .field
-            label.field-label Credit card
-            input.input( v-validate="'required|credit_card'" name="CreditCard" type="text" placeholder="Enter your CreditCard" :class="{'is-danger': errors.has('form-1.CreditCard')}")
-            span.field-text.is-danger(v-if="errors.has('form-1.CreditCard')") {{ errors.first('form-1.CreditCard') }}
-
-          button.button.is-primary(type="submit") Validate
+            button.button.is-primary(type="submit") Validate
 
     .column.is-desktop-6
       AppCard.is-full
         template(slot="header")
           h4.AppCard-title Checkbox & Radio
-        form.form(@submit.prevent="validateForm('form-2')" data-vv-scope="form-2")
+        ValidationObserver
+          form.form(slot-scope="{ validate }" @submit.prevent="validate()")
+            ValidationProvider(name="RadioGroup" rules="required|included:1,2")
+              .field(slot-scope="{ errors }")
+                label.field-label  Radio
+                label.radio.is-inline
+                  input.radio-input(type='radio' value='1' v-model="preference" name="RadioGroup")
+                  span.radio-label Coding
+                label.radio.is-inline
+                  input.radio-input(type='radio' value='2' v-model="preference" name="RadioGroup")
+                  span.radio-label Music
+                label.radio.is-inline
+                  input.radio-input(type='radio' value='3' v-model="preference" name="RadioGroup")
+                  span.radio-label Gaming
 
-          .field
-            label.field-label  Radio
-            label.radio.is-inline
-              input.radio-input(type='radio' value='1' v-validate="'required|included:1,2'" name="RadioGroup")
-              span.radio-label Coding
-            label.radio.is-inline
-              input.radio-input(type='radio' value='2' name="RadioGroup")
-              span.radio-label Music
-            label.radio.is-inline
-              input.radio-input(type='radio' value='3' name="RadioGroup")
-              span.radio-label Gaming
+                span.field-text.is-danger(v-if="errors[0]") {{ errors[0] }}
 
-            span.field-text.is-danger(v-if="errors.has('form-2.RadioGroup')") {{ errors.first('form-2.RadioGroup') }}
+            ValidationProvider(name="Checkbox" rules="required:rejectFalse")
+              .field(slot-scope="{ errors }")
+                label.field-label Checkbox
+                label.checkbox
+                  input.checkbox-input(type='checkbox' name="Checkbox" v-model="isTicked" :value="true")
+                  span.checkbox-label Tick me
+                span.field-text.is-danger(v-if="errors[0]") {{ errors[0] }}
 
-          .field
-            label.field-label Checkbox
-            label.checkbox
-              input.checkbox-input(type='checkbox' v-validate="'required'" name="Checkbox")
-              span.checkbox-label Tick me
-            span.field-text.is-danger(v-if="errors.has('form-2.Checkbox')") {{ errors.first('form-2.Checkbox') }}
-
-          button.button.is-primary(type="submit") Validate
+            button.button.is-primary(type="submit") Validate
 
 </template>
 
 <script>
+import { ValidationProvider, ValidationObserver } from 'vee-validate'
+
 export default {
   head () {
     return {
       title: 'Validation'
     }
   },
-  data: () => ({}),
-  methods: {
-    validateForm (scope) {
-      this.$validator.validateAll(scope).then(result => {
-        if (result) {
-          // eslint-disable-next-line
-          alert('Form Submitted!')
-        }
-      })
+  components: {
+    ValidationProvider,
+    ValidationObserver
+  },
+  data: () => ({
+    preference: '',
+    isTicked: false,
+    form1: {
+      name: '',
+      email: '',
+      url: '',
+      digits: '',
+      card: ''
+    },
+    form2: {
+      name: '',
+      email: '',
+      url: '',
+      digits: '',
+      card: ''
     }
-  }
+  })
 }
 </script>

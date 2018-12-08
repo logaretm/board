@@ -44,6 +44,7 @@ div
 <script>
 import colors from '@/data/colors'
 import sizes from '@/data/sizes'
+
 export default {
   head () {
     return {

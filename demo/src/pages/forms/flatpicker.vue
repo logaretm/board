@@ -89,11 +89,17 @@ div
 </template>
 
 <script>
+import FlatPickr from 'vue-flatpickr-component'
+import 'flatpickr/dist/flatpickr.css'
+
 export default {
   head () {
     return {
       title: 'Vue Flatpickr'
     }
+  },
+  components: {
+    FlatPickr
   },
   data: () => ({
     form: {

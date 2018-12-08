@@ -17,11 +17,16 @@ div
 </template>
 
 <script>
+import { VueEditor } from 'vue2-editor'
+
 export default {
   head () {
     return {
-      title: 'Tibtab'
+      title: 'Vue 2 - Editor Example'
     }
+  },
+  components: {
+    VueEditor
   },
   data: () => ({
     editor: {

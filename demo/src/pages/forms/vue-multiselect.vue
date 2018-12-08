@@ -115,11 +115,17 @@ div
 </template>
 
 <script>
+import Multiselect from 'vue-multiselect'
+import 'vue-multiselect/dist/vue-multiselect.min.css'
+
 export default {
   head () {
     return {
       title: 'Vue-multiselect'
     }
+  },
+  components: {
+    Multiselect
   },
   data: () => ({
     single: '',

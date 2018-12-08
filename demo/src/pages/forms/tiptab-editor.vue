@@ -201,32 +201,22 @@ div
 </template>
 
 <script>
-// import {
-//   // Nodes
-//   BlockquoteNode,
-//   CodeBlockNode,
-//   CodeBlockHighlightNode,
-//   HardBreakNode,
-//   HeadingNode,
-//   ImageNode,
-//   OrderedListNode,
-//   BulletListNode,
-//   ListItemNode,
-//   TodoItemNode,
-//   TodoListNode,
-
-//   // Marks
-//   BoldMark,
-//   CodeMark,
-//   ItalicMark,
-//   LinkMark,
-//   StrikeMark,
-//   UnderlineMark,
-
-//   // General Extensions
-//   HistoryExtension,
-//   PlaceholderExtension
-// } from 'tiptap-extensions'
+import { Editor, EditorContent, EditorMenuBubble, EditorFloatingMenu } from 'tiptap'
+import {
+  Blockquote,
+  BulletList,
+  CodeBlock,
+  HardBreak,
+  Heading,
+  ListItem,
+  OrderedList,
+  TodoItem,
+  TodoList,
+  Bold,
+  Code,
+  Italic,
+  Link
+} from 'tiptap-extensions'
 
 export default {
   head () {
@@ -234,28 +224,31 @@ export default {
       title: 'Tibtab'
     }
   },
-  // data: () => ({
-  //   extensions: [
-  //     new BlockquoteNode(),
-  //     new BulletListNode(),
-  //     new CodeBlockNode(),
-  //     new HardBreakNode(),
-  //     new HeadingNode({ maxLevel: 3 }),
-  //     new ImageNode(),
-  //     new ListItemNode(),
-  //     new OrderedListNode(),
-  //     new TodoItemNode(),
-  //     new TodoListNode(),
-  //     new BoldMark(),
-  //     new CodeMark(),
-  //     new ItalicMark(),
-  //     new LinkMark(),
-  //     new StrikeMark(),
-  //     new UnderlineMark(),
-  //     new HistoryExtension(),
-  //     new PlaceholderExtension()
-  //   ]
-  // }),
+  components: {
+    EditorContent,
+    EditorMenuBubble,
+    EditorFloatingMenu
+  },
+  data: () => ({
+    editor: new Editor({
+      extensions: [
+        new Blockquote(),
+        new BulletList(),
+        new CodeBlock(),
+        new HardBreak(),
+        new Heading({ levels: [1, 2, 3] }),
+        new ListItem(),
+        new OrderedList(),
+        new TodoItem(),
+        new TodoList(),
+        new Bold(),
+        new Code(),
+        new Italic(),
+        new Link(),
+        new History()
+      ]
+    })
+  }),
   methods: {
     showImagePrompt (command) {
       const src = prompt('Enter the url of your image here')
