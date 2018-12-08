@@ -7,7 +7,7 @@
   "author": "code@baianat.com",
   "license": "MIT",
   "scripts": {
-    "dev": "",
+    "dev": "cd demo && npm run serve && cd ..",
     "deploy": "",
     "lint": "eslint ./src --fix"
   },

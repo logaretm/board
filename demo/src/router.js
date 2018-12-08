@@ -1,45 +1,22 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import Home from './pages/index.vue'
 
 Vue.use(Router)
-
-// const requireFolder = (path) => {
-//   return require.context(path, false, /\.(vue)$/)
-// }
-
-// const isDir = (fileName) => !fileName.test(/\.vue$/)
-
-// function mapRoutes (path, context) {
-//   const routes = [];
-//   if (isDir(path)) {
-//     requireFolder)
-//   }
-
-//   const pathName = fileName.replace('./', '').split('.').shift()
-
-//   const route = {
-//     path: pathName
-
-//   }
-// }
 
 const requireComponent = require.context('./pages', true, /\.(vue)$/)
 
 const loadPageAsync = (page) => () => import(`./pages/${page}.vue`)
 
-const routes = requireComponent.keys().map(path => {
-  const pathName = path.replace('./', '').split('.').shift()
-  let isIndex = false
-  if (pathName.endsWith('index.vue')) {
-    isIndex = true
+const routes = requireComponent.keys().map(fileName => {
+  const componentPath = fileName.replace('./', '').split('.').shift()
+  let path = `/${componentPath}`
+  if (path.indexOf('index') !== -1) {
+    path = path.replace('index', '')
   }
 
-  console.log('loading: ', `./pages/${pathName}.vue`, `/${pathName.replace('index', '')}`)
-
   return {
-    path: (isIndex ? `/${pathName.replace('index', '')}` : `/${pathName}`).replace(/\/$/, ''),
-    component: loadPageAsync(pathName)
+    path,
+    component: loadPageAsync(componentPath)
   }
 })
 
