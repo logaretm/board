@@ -196,7 +196,7 @@ export default {
           xaxis: {
             type: 'datetime'
           },
-          colors: ['#dae4f1']
+          colors: ['#f2248f']
         },
         series: [
           {
@@ -229,7 +229,7 @@ export default {
           xaxis: {
             type: 'datetime'
           },
-          colors: ['#dae4f1']
+          colors: ['#2451f2']
         },
         series: [
           {
