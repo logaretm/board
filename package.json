@@ -8,7 +8,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "",
-    "deploy": ""
+    "deploy": "",
+    "lint": "eslint ./src --fix"
   },
   "husky": {
     "hooks": {
@@ -17,15 +18,16 @@
   },
   "lint-staged": {
     "*.js": [
-      "vue-cli-service lint",
+      "eslint --fix",
       "git add"
     ],
     "*.vue": [
-      "vue-cli-service lint",
+      "eslint --fix",
       "git add"
     ]
   },
   "devDependencies": {
+    "@vue/eslint-config-standard": "^4.0.0",
     "babel-eslint": "^10.0.1",
     "cross-env": "^5.2.0",
     "eslint": "^5.10.0",
