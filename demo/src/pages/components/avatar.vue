@@ -6,10 +6,8 @@ div
       AppCard.is-full
         template(slot="header")
           h4.AppCard-title Basic
-        figure.avatar.is-inline
-          img(src='@/assets/img/users/1.jpg', alt='avatar')
-        figure.avatar.is-inline
-          span.avatar-initials AV
+        Avatar(src="/img/users/1.jpg")
+        Avatar(alt="AV")
 
     .column
       AppCard.is-full
@@ -17,64 +15,50 @@ div
           h4.AppCard-title Sizes
         .grid.is-6.has-space
           .column
-            .u-mb-normal(v-for="(size, idx) in sizes" )
-              figure.avatar(:class="size")
-                img(:src='`users/${idx+1}.jpg`', alt='avatar')
+            .u-mb-normal(v-for="(size, idx) in sizes")
+              Avatar(:src='`/img/users/${idx+1}.jpg`' :class="size")
           .column
             .u-mb-normal(v-for="size in sizes")
-              figure.avatar( :class="size")
-                span.avatar-initials AV
+              Avatar(alt="AV" :class="size")
     .column
       AppCard.is-full
         template(slot="header")
           h4.AppCard-title Colors
-        figure.avatar.is-inline( v-for="color in colors" :class="color")
-          span.avatar-initials AV
+        Avatar.is-inline(v-for="color in colors" :key="color" :class="color" alt="AV")
 
     .column
       AppCard.is-full
         template(slot="header")
           h4.AppCard-title Status
-        figure.avatar.is-inline.is-massive
-          img(src='@/assets/img/users/1.jpg', alt='avatar')
-          span.avatar-icon.is-primary
-        figure.avatar.is-inline.is-large
-          img(src='@/assets/img/users/2.jpg', alt='avatar')
-          span.avatar-icon.is-secondary
-        figure.avatar.is-inline.is-normal
-          img(src='@/assets/img/users/3.jpg', alt='avatar')
-          span.avatar-icon.is-success
-        figure.avatar.is-inline.is-small
-          img(src='@/assets/img/users/4.jpg', alt='avatar')
-          span.avatar-icon.is-danger
-        figure.avatar.is-inline.is-tiny
-          img(src='@/assets/img/users/5.jpg', alt='avatar')
-          span.avatar-icon.is-warning
+        Avatar(src="/img/users/1.jpg" status="is-primary").is-inline.is-massive
+        Avatar(src="/img/users/2.jpg" status="is-secondary").is-inline.is-large
+        Avatar(src="/img/users/3.jpg" status="is-success").is-inline.is-normal
+        Avatar(src="/img/users/4.jpg" status="is-danger").is-inline.is-small
+        Avatar(src="/img/users/5.jpg" status="is-warning").is-inline.is-tiny
 
     .column
       AppCard.is-full
         template(slot="header")
           h4.AppCard-title Icons
-        figure.avatar.is-inline( v-for="color in colors" :class="color")
-          span.avatar-initials: AppIcon(name="insert-emoticon")
+        Avatar.is-inline(v-for="color in colors" :key="color" :class="color")
+          AppIcon(name="insert-emoticon")
     .column
       AppCard.is-full
         template(slot="header")
           h4.AppCard-title Icons
-        figure.avatar.is-inline( v-for="size in sizes" :class="size")
-          span.avatar-initials: AppIcon(name="insert-emoticon")
+        Avatar.is-inline(v-for="size in sizes" :class="size" :key="size")
+          AppIcon(name="insert-emoticon")
+
     .column
       AppCard.is-full
         template(slot="header")
           h4.AppCard-title Square
         div
-          figure.avatar.is-inline.is-square( v-for="color in colors" :class="color")
-            span.avatar-initials AV
+          Avatar.is-inline.is-square(v-for="color in colors" :key="color" :class="color" alt="AV")
         .u-mt-large
-          figure.avatar.is-inline.is-square( v-for="size,idx in sizes" :class="size")
-            img(:src='`users/${idx+1}.jpg`', alt='avatar')
-          figure.avatar.is-inline.is-square( v-for="size in sizes" :class="size")
-            span.avatar-initials: AppIcon(name="crop")
+          Avatar.is-inline.is-square(v-for="(size, idx) in sizes" :key="idx" :src="`/img/users/${idx+1}.jpg`" :class="size" alt="AV")
+          Avatar.is-inline.is-square(v-for="size in sizes" :key="size" :class="size")
+            AppIcon(name="crop")
 </template>
 
 <script>

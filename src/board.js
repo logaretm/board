@@ -1,3 +1,4 @@
+import Avatar from './components/Avatar'
 import AppIcon from './components/AppIcon'
 import AppItem from './components/AppItem'
 import AppList from './components/AppList'
@@ -10,6 +11,7 @@ import FullPage from './components/FullPage'
 
 const componentsMixin = {
   components: {
+    Avatar,
     AppIcon,
     AppItem,
     AppList,

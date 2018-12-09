@@ -9,8 +9,7 @@
       AppList(:items="notificationIcons")
       button.button.is-tiny.is-dark.is-wide.u-mt-small View all
     AppDropdown.is-right
-      figure.avatar.is-tiny(slot="trigger" )
-        img(src='@/assets/img/users/1.jpg', alt='avatar')
+      Avatar.is-tiny(slot="trigger" src="/img/users/1.jpg" alt="AV")
       a.dropdown-item(href='#0') Profile
       a.dropdown-item(href='#0') Messages
       a.dropdown-item(href='#0') Logout
@@ -90,6 +89,7 @@
 </style>
 
 <script>
+import Avatar from './Avatar'
 import {
   notificationIcons,
   notificationIconsState,
@@ -99,6 +99,9 @@ import {
 
 export default {
   name: 'TheHeader',
+  components: {
+    Avatar
+  },
   data: () => ({
     notificationIcons: notificationIcons,
     notificationIconsState: notificationIconsState,
