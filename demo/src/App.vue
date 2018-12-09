@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <DefaultLayout>
+    <component :is="layout">
       <Transition name="fade" mode="out-in">
         <RouterView />
       </Transition>
@@ -15,19 +15,31 @@
           </button>
         </div>
       </notifications>
-    </DefaultLayout>
+    </component>
   </div>
 </template>
 
 <script>
 import DefaultLayout from '~board/layouts/Default'
+import MinimalLayout from '~board/layouts/Minimal'
+import Layout from './layout'
 
 export default {
   head: () => ({
     titleTemplate: '%s | Board'
   }),
   components: {
-    DefaultLayout
+    DefaultLayout,
+    MinimalLayout
+  },
+  computed: {
+    layout () {
+      if (Layout.layout === 'minimal') {
+        return MinimalLayout
+      }
+
+      return DefaultLayout
+    }
   }
 }
 </script>

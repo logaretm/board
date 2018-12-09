@@ -3,6 +3,7 @@ import Meta from 'vue-meta'
 import VueApexCharts from 'vue-apexcharts'
 import VeeValidate from 'vee-validate'
 import Notifications from 'vue-notification'
+import Layout from './layout'
 import App from './App.vue'
 import router from './router'
 import Board from '../../src/board'
@@ -22,5 +23,24 @@ Vue.use(Board)
 
 new Vue({
   router,
-  render: h => h(App)
+  render: h => h(App),
+  watch: {
+    $route: {
+      immediate: true,
+      handler (val) {
+        const matched = [...val.matched].pop()
+        if (!matched) {
+          this.setLayout('default')
+          return
+        }
+
+        this.setLayout(matched.components.default.layout || 'default')
+      }
+    }
+  },
+  methods: {
+    setLayout (val) {
+      Layout.layout = val
+    }
+  }
 }).$mount('#app')
