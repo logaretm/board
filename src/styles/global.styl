@@ -18,6 +18,12 @@ unitRes(min, max, screen-min = 320, screen-max = 2560)
   'calc( %s + %s )' % (unit($slope * 100, 'vw') unit($init, 'px'))
 
 /*
+ * aspectRatio Mixin
+ */
+aspectRatio(width, height)
+  (height / width) * 100%
+
+/*
  * @font-face Mixin
  */
 fontFace(font-name, font-src, font-weight = false, font-style = false, formats = eot woff2 woff truetype svg, local-font-name = font-name, svg-font-name = font-name)
@@ -102,13 +108,10 @@ user-select(select)
   user-select: select
 
 /*
-
    Usage: {shorthand for rule}{shorthand for direction}{integer-index}
-
    {shorthand for rule}
    p - padding
    m - margin
-
    {shorthand for direction}
    t - top
    r - right
@@ -117,10 +120,8 @@ user-select(select)
    v - vertical
    h - horizontal
    a - all
-
    {integer-index}
    [1-8]
-
 */
 t(rule, size, u)
   {rule}-top: (u ? unit(size, u) : size)
@@ -162,41 +163,41 @@ spacing(base, numSizes)
  * https://github.com/ardentic/stylus-mq
  */
 $mq-base-font-size ?= 16px
-// 
+//
 // Allows you to create a separate stylesheet for older browsers that
 // don't support media queries.
-// 
+//
 $mq-responsive ?= true
-// 
+//
 // Default named breakpoints.
-// 
+//
 $mq-breakpoints ?= {
   tiny: 480px,
   small: 768px,
   medium: 992px,
   large: 1200px
 }
-// 
+//
 // Static breakpoint to use when $mq-responsive is set to false.
-// 
+//
 $mq-static-breakpoint ?= 'desktop'
-// 
+//
 // List of breakpoints to show in the top right corner of the browser.
-// 
+//
 $mq-show-breakpoints ?= ()
 
-// 
+//
 // Convert pixels to ems
-// 
+//
 mq-px2em($value)
   if (unit($value) == 'em')
     return $value
 
   return unit(($value / $mq-base-font-size), 'em')
 
-// 
+//
 // Get named breakpoint width
-// 
+//
 mq-get-breakpoint-width($name)
   unless ($name in $mq-breakpoints)
     warn('Breakpoint ' + $name + ' does not exist')
@@ -245,17 +246,17 @@ mq($from = false, $until = false, $and = false, $media-type = 'all')
     @media $media-query
       {block}
 
-// 
+//
 // Add a breakpoint
-// 
+//
 mq-add-breakpoint($name, $width)
   $new-breakpoint = {}
   $new-breakpoint[$name] = $width
   return merge($mq-breakpoints, $new-breakpoint)
 
-// 
+//
 // Output breakpoints as json
-// 
+//
 mq-breakpoints-to-json()
   $json = ()
 
@@ -267,9 +268,9 @@ mq-breakpoints-to-json()
 
   return '{ ' + join(', ', $json) + ' }'
 
-// 
+//
 // Show the active breakpoint in the top right corner of the viewport
-// 
+//
 if ($mq-show-breakpoints)
   body:before
     background-color: #fcf8e3
