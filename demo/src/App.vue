@@ -23,6 +23,9 @@
 import DefaultLayout from '~board/layouts/Default'
 
 export default {
+  head: () => ({
+    titleTemplate: '%s | Board'
+  }),
   components: {
     DefaultLayout
   }
