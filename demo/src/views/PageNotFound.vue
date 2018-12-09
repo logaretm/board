@@ -1,9 +1,6 @@
 <template>
   <div id="app">
-    <DefaultLayout>
-      <Transition name="fade" mode="out-in">
-        <RouterView />
-      </Transition>
+    <ErrorLayout title="404" message="Page not found">
       <notifications group="global" position="bottom right">
         <div slot="body" slot-scope="props" :class="['alert', props.item.type]">
           <div class="alert-content">
@@ -15,16 +12,16 @@
           </button>
         </div>
       </notifications>
-    </DefaultLayout>
+    </ErrorLayout>
   </div>
 </template>
 
 <script>
-import DefaultLayout from '~board/layouts/Default'
+import ErrorLayout from '~board/layouts/Error'
 
 export default {
   components: {
-    DefaultLayout
+    ErrorLayout
   }
 }
 </script>

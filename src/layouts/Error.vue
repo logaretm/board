@@ -1,8 +1,9 @@
 <template lang="pug">
 .The404
   .The404-card
-    h1 404
-    p Page not found
+    h1 {{ title }}
+    p {{ message }}
+  slot
 
 </template>
 
@@ -50,6 +51,16 @@ import FullPage from '../components/FullPage'
 export default {
   components: {
     FullPage
+  },
+  props: {
+    title: {
+      type: String,
+      default: '404'
+    },
+    message: {
+      type: String,
+      default: 'Not found'
+    }
   }
 }
 </script>

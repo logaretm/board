@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import PageNotFound from './views/PageNotFound'
 
 Vue.use(Router)
 
@@ -18,6 +19,11 @@ const routes = requireComponent.keys().map(fileName => {
     path,
     component: loadPageAsync(componentPath)
   }
+})
+
+routes.push({
+  path: '*',
+  component: PageNotFound
 })
 
 export default new Router({
